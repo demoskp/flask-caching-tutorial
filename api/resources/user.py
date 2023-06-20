@@ -30,7 +30,7 @@ class UserResource(Resource):
         user = cache.get(f"user_id_{user_id}")
         if user is None:
             user = User.query.get_or_404(user_id)
-            cache.set(f"user_id_{user_id}", user, timeout=ONE_WEEK)
+            cache.set(f"user_id_{user_id}", user)
         schema = UserSchema()
 
         return {"user": schema.dump(user)}
